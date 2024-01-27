@@ -17,11 +17,11 @@ type User struct {
 }
 
 func (u User) validateFullName(fullName string) error {
-	err := emptyStringValidator(fullName, "fullName")
+	err := emptyStringValidator(fullName, "nome ou sobrenome")
 	if err != nil {
 		return err
 	}
-	err = invalidFieldLenghValidator(fullName, "fullName", 3, math.MaxUint8)
+	err = invalidFieldLenghValidator(fullName, "nome ou sobrenome", 3, math.MaxUint8)
 	if err != nil {
 		return err
 	}
@@ -41,11 +41,11 @@ func (u User) validateEmail(email string) error {
 }
 
 func (u User) validatePass(pass string) error {
-	err := emptyStringValidator(pass, "pass")
+	err := emptyStringValidator(pass, "password")
 	if err != nil {
 		return err
 	}
-	err = invalidFieldLenghValidator(pass, "pass", 8, 32)
+	err = invalidFieldLenghValidator(pass, "password", 8, 32)
 	if err != nil {
 		return err
 	}

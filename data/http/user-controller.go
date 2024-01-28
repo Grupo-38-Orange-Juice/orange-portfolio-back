@@ -56,7 +56,7 @@ func (u UserController) CreateUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully"})
+	c.JSON(http.StatusCreated, gin.H{"message": "Usuário criado com sucesso"})
 }
 
 // @Param user body LoginDTO true "User object to be logged in"
@@ -78,13 +78,13 @@ func (u UserController) Login(c *gin.Context) {
 		return
 	}
 	if user == nil {
-		c.JSON(http.StatusNotFound, gin.H{"message": "User not found"})
+		c.JSON(http.StatusNotFound, gin.H{"message": "Email não encontrado"})
 		return
 	}
 
 	if err = u.crypto.CompareHashAndPassword(user.Password, loginRequest.Password); err != nil {
 		println(err.Error())
-		c.JSON(http.StatusUnauthorized, gin.H{"message": "Unauthorized"})
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "Senha inválida"})
 		return
 	}
 	token, err := u.token.GenerateToken(user.ID)
